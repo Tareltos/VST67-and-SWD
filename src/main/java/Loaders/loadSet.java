@@ -21,7 +21,7 @@ public class loadSet {
 //		XSSFWorkbook myExcelBook = new XSSFWorkbook(new FileInputStream(file));
 //		XSSFSheet myExcelSheet = myExcelBook.getSheet("AUTOSPACE");
         XSSFWorkbook wb  = new XSSFWorkbook(file);
-        XSSFSheet sheet = wb.getSheet("AUTOSPACE");
+        XSSFSheet sheet = wb.getSheet("Ajusa");
         for (int i = 0; i < sheet.getLastRowNum()+1;) {
             XSSFRow row = sheet.getRow(i);
 

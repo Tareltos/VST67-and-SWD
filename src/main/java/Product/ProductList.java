@@ -1,30 +1,25 @@
 package Product;
 
-import java.util.ArrayList;
+import java.io.IOException;
+import java.util.*;
+import Loaders.*;
 
 /**
  * Created by Виталя Тарелко on 19.06.2017.
  */
 public class ProductList {
-    private Product product = new Product("Airtex","1680", 5, 990);
-    private Product product2 = new Product("Airtex","1700", 8, 1090);
-    private Product product3 = new Product("Airtex","9274", 16, 1490);
-    private Product product4 = new Product("Airtex","1609", 3, 1390);
-    ArrayList<Product> list;
 
-    public ProductList() {
-        list = new ArrayList<Product>();
-        list.add(product);
-        list.add(product2);
-        list.add(product3);
-        list.add(product4);
+    List<Product> list;
+
+    public ProductList() throws IOException {
+      list = loadSet.LFromExcel(list, "Airtex.xlsx");
     }
 
-    public ArrayList<Product> getList() {
+    public List<Product> getList() {
         return list;
     }
 
-    public void setList(ArrayList<Product> list) {
+    public void setList(List<Product> list) {
         this.list = list;
     }
 }

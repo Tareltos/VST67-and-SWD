@@ -36,24 +36,19 @@ public class vst_67 {
         Thread.sleep(1000);
         // search by articul frof All List
         for(int i =0; i<list.size(); i++){
-            driver.findElement(By.xpath(".//*[@id='pcode']")).clear();
-            driver.findElement(By.xpath(".//*[@id='pcode']")).sendKeys(list.get(i).getArt());
-            driver.findElement(By.xpath(".//*[@id='srchform']/div/div[2]/input")).click();
-            Thread.sleep(1000);
-            driver.findElement(By.xpath("html/body/div[2]/div/div[2]/div[2]/div/div/noindex/table/tbody/tr[3]/td[2]")).click();
-            Thread.sleep(15000);
+            String url = "http://vst67.ru/?pbrandnumber=00" +list.get(i).getArt() +"&pbrandname="+list.get(i).getBrand();
+            System.out.println(url);
+            driver.get(url);
+            Thread.sleep(10000);
+
          try {
              String time = driver.findElement(By.xpath(".//*[@id='searchResultsTable']/tbody/tr[3]/td[6]")).getText();
              String count = driver.findElement(By.xpath(".//*[@id='searchResultsTable']/tbody/tr[3]/td[5]/span")).getText();
              String price = driver.findElement(By.xpath(".//*[@id='searchResultsTable']/tbody/tr[3]/td[7]")).getText();
-             System.out.println(list.get(i).getArt() + " Count " + count + " DeliveryTime: " + time + " Best_Price :" + price);
-
+             System.out.println(list.get(i).getArt() + " Count " + count + " DeliveryTime: " + time + " Best_Price :" + price + " Autospace :" + list.get(i).getCost());
          }
          catch(Exception e){}
         }
-        Thread.sleep(3000);
-
-
 
         driver.close();
 

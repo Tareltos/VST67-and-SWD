@@ -26,11 +26,11 @@ public class loadSet {
             XSSFRow row = sheet.getRow(i);
 
             try{String brand = row.getCell(0).getStringCellValue();
-                System.out.print(brand);
+                System.out.print(brand +" ");
                 String art = (String)row.getCell(1).getRawValue();
-                System.out.print(art);
+                System.out.print(art +" ");
                 int count = Integer.parseInt(row.getCell(2).getRawValue());
-                System.out.print(count);
+                System.out.print(count +" ");
                 double cost = Double.parseDouble(row.getCell(3).getRawValue());
                 System.out.println(cost);
                 list.add(new Product(brand, art, count, cost));

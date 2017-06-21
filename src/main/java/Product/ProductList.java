@@ -22,4 +22,7 @@ public class ProductList {
     public void setList(List<Product> list) {
         this.list = list;
     }
+    public void setData() throws IOException {
+        loadSet.setToExcel(list,  "ComperePrice.xls");
+    }
 }

@@ -40,16 +40,18 @@ public class vst_67 {
             System.out.println(url);
             driver.get(url);
             Thread.sleep(10000);
-
          try {
              String time = driver.findElement(By.xpath(".//*[@id='searchResultsTable']/tbody/tr[3]/td[6]")).getText();
              String count = driver.findElement(By.xpath(".//*[@id='searchResultsTable']/tbody/tr[3]/td[5]/span")).getText();
              String price = driver.findElement(By.xpath(".//*[@id='searchResultsTable']/tbody/tr[3]/td[7]")).getText();
-             System.out.println(list.get(i).getArt() + " Count " + count + " DeliveryTime: " + time + " Best_Price :" + price + " Autospace :" + list.get(i).getCost());
+             String [] p = price.split(" ");
+             System.out.println(list.get(i).getArt() + " Count " + count + " DeliveryTime: " + time + " Best_Price :" + p[0] + " Autospace :" + list.get(i).getCost());
+              list.get(i).setCostFrom(Integer.parseInt(p[0]));
+              pl.setList(list);
          }
          catch(Exception e){}
         }
-
+        pl.setData();
         driver.close();
 
     }

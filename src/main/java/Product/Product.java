@@ -5,13 +5,34 @@ package Product;
  */
 public class Product {
     private String brand;
+    private String group;
     private String art;
+    private int code;
+    private String e;
     private int count;
+    private double sbs;
     private double cost;
-    private double costFrom;
+    private String costFrom;
+    private String time;
+    private String rCount;
+
+
 
     public Product() {
     }
+
+    public Product(String brand, String group, String art, int code, String e, int count, double sbs, double cost) {
+        this.brand = brand;
+        this.group = group;
+        this.art = art;
+        this.code = code;
+        this.e = e;
+        this.count = count;
+        this.sbs = sbs;
+        this.cost = cost;
+    }
+
+
 
     public Product(String brand, String art, int count, double cost) {
         this.brand=brand;
@@ -52,11 +73,59 @@ public class Product {
         this.cost = cost;
     }
 
-    public double getCostFrom() {
+    public String getCostFrom() {
         return costFrom;
     }
 
-    public void setCostFrom(double costFrom) {
+    public void setCostFrom(String costFrom) {
         this.costFrom = costFrom;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
+    }
+
+    public String getE() {
+        return e;
+    }
+
+    public void setE(String e) {
+        this.e = e;
+    }
+
+    public double getSbs() {
+        return sbs;
+    }
+
+    public void setSbs(double sbs) {
+        this.sbs = sbs;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getrCount() {
+        return rCount;
+    }
+
+    public void setrCount(String rCount) {
+        this.rCount = rCount;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
     }
 }

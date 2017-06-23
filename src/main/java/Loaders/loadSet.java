@@ -25,19 +25,20 @@ public class loadSet {
         list = new ArrayList<Product>();
 
         XSSFWorkbook wb  = new XSSFWorkbook(file);
-        XSSFSheet sheet = wb.getSheet("Ajusa");
+        XSSFSheet sheet = wb.getSheet("AUTOSPACE");
         for (int i = 0; i < sheet.getLastRowNum()+1;) {
             XSSFRow row = sheet.getRow(i);
 
-            try{String brand = row.getCell(0).getStringCellValue();
-           //     System.out.print(brand +" ");
-                String art = (String)row.getCell(1).getRawValue();
-           //     System.out.print(art +" ");
-                int count = Integer.parseInt(row.getCell(2).getRawValue());
-          //      System.out.print(count +" ");
-                double cost = Double.parseDouble(row.getCell(3).getRawValue());
-          //      System.out.println(cost);
-                list.add(new Product(brand, art, count, cost));
+            try{
+                String brand = row.getCell(0).getStringCellValue();
+                String group = row.getCell(1).getStringCellValue();
+                String art = (String)row.getCell(2).getStringCellValue();
+                int code = Integer.parseInt(row.getCell(3).getRawValue());
+                String e = (String)row.getCell(4).getStringCellValue();
+                int count = Integer.parseInt(row.getCell(5).getRawValue());
+                double sbs = Double.parseDouble(row.getCell(6).getRawValue());
+                double cost = Double.parseDouble(row.getCell(7).getRawValue());
+                list.add(new Product(brand,group, art, code, e, count, sbs, cost));
                 i++;
             }
             catch(NullPointerException e){
@@ -48,35 +49,48 @@ public class loadSet {
         wb.close();
         return list;
 
-   }
+    }
 
-   public static void setToExcel(List<Product> list, String file) throws IOException {
+    public static void setToExcel(List<Product> list, String file) throws IOException {
 // Создаем документ
-       Workbook book = new HSSFWorkbook();
-       // Создаем лист
-       Sheet sheet = book.createSheet("AUTOSPACE");
-       // Нумерация начинается с нуля
-       for (int i = 0; i < list.size(); i++) {
-           Row row = sheet.createRow(i);
-           // Создаем ячейку
-           Cell brand = row.createCell(0);
-           brand.setCellValue(list.get(i).getBrand());
-           Cell art = row.createCell(1);
-           art.setCellValue(list.get(i).getArt());
-           Cell count = row.createCell(2);
-           count.setCellValue(list.get(i).getCount());
-           Cell cost = row.createCell(3);
-           cost.setCellValue(list.get(i).getCost());
-           Cell rus = row.createCell(4);
-           rus.setCellValue(list.get(i).getCostFrom());
-           // Меняем размер столбца
-           sheet.autoSizeColumn(1);
+        Workbook book = new HSSFWorkbook();
+        // Создаем лист
+        Sheet sheet = book.createSheet("AUTOSPACE");
+        // Нумерация начинается с нуля
+        for (int i = 0; i < list.size(); i++) {
+            Row row = sheet.createRow(i);
+            // Создаем ячейку
+            Cell brand = row.createCell(0);
+            brand.setCellValue(list.get(i).getBrand());
+            Cell group = row.createCell(1);
+            group.setCellValue(list.get(i).getGroup());
+            Cell art = row.createCell(2);
+            art.setCellValue(list.get(i).getArt());
+            Cell code = row.createCell(3);
+            code.setCellValue(list.get(i).getCode());
+            Cell e = row.createCell(4);
+            e.setCellValue(list.get(i).getE());
+            Cell count = row.createCell(5);
+            count.setCellValue(list.get(i).getCount());
+            Cell sbs = row.createCell(6);
+            sbs.setCellValue(list.get(i).getSbs());
+            Cell cost = row.createCell(7);
+            cost.setCellValue(list.get(i).getCost());
+            Cell rus = row.createCell(8);
+            rus.setCellValue(list.get(i).getCostFrom());
+            Cell deliveryTime = row.createCell(9);
+            deliveryTime.setCellValue(list.get(i).getTime());
+            Cell rusCount = row.createCell(10);
+            rus.setCellValue(list.get(i).getrCount());
 
-           // Записываем всё в файл
-           book.write(new FileOutputStream(file));
-           book.close();
-       }
-   }
+            // Меняем размер столбца
+            sheet.autoSizeColumn(1);
+
+            // Записываем всё в файл
+            book.write(new FileOutputStream(file));
+            book.close();
+        }
+    }
 
 
 

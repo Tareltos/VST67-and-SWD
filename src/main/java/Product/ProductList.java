@@ -12,7 +12,7 @@ public class ProductList {
     List<Product> list;
 
     public ProductList() throws IOException {
-      list = loadSet.LFromExcel(list, "Airtex.xlsx");
+      list = loadSet.LFromExcel(list, "Autospace.xlsx");
     }
 
     public List<Product> getList() {

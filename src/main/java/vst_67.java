@@ -17,15 +17,14 @@ import java.util.concurrent.TimeUnit;
 public class vst_67 {
 
 
-
     public static void main(String[] args) throws InterruptedException, IOException {
         ProductList pl = new ProductList();
         List<Product> list = pl.getList();
 
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(25, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get("http://vst67.ru");
 
@@ -36,20 +35,22 @@ public class vst_67 {
         Thread.sleep(1000);
         // search by articul frof All List
         for(int i =0; i<list.size(); i++){
-            String url = "http://vst67.ru/?pbrandnumber=00" +list.get(i).getArt() +"&pbrandname="+list.get(i).getBrand();
+            String url = "http://vst67.ru/?pbrandnumber=" +list.get(i).getArt() +"&pbrandname="+list.get(i).getBrand();
             System.out.println(url);
             driver.get(url);
-            Thread.sleep(10000);
-         try {
-             String time = driver.findElement(By.xpath(".//*[@id='searchResultsTable']/tbody/tr[3]/td[6]")).getText();
-             String count = driver.findElement(By.xpath(".//*[@id='searchResultsTable']/tbody/tr[3]/td[5]/span")).getText();
-             String price = driver.findElement(By.xpath(".//*[@id='searchResultsTable']/tbody/tr[3]/td[7]")).getText();
-             String [] p = price.split(" ");
-             System.out.println(list.get(i).getArt() + " Count " + count + " DeliveryTime: " + time + " Best_Price :" + p[0] + " Autospace :" + list.get(i).getCost());
-              list.get(i).setCostFrom(Integer.parseInt(p[0]));
-              pl.setList(list);
-         }
-         catch(Exception e){}
+            Thread.sleep(15000);
+            try {
+                String time = driver.findElement(By.xpath(".//*[@id='searchResultsTable']/tbody/tr[3]/td[6]")).getText();
+                String count = driver.findElement(By.xpath(".//*[@id='searchResultsTable']/tbody/tr[3]/td[5]/span")).getText();
+                String price = driver.findElement(By.xpath(".//*[@id='searchResultsTable']/tbody/tr[3]/td[7]")).getText();
+                // String [] p = price.split(" ");
+                System.out.println(list.get(i).getArt() + " Count " + count + " DeliveryTime: " + time + " Best_Price :" + price+ " Autospace :" + list.get(i).getCost());
+                list.get(i).setTime(time);
+                list.get(i).setrCount(count);
+                list.get(i).setCostFrom(price);
+                pl.setList(list);
+            }
+            catch(Exception e){}
         }
         pl.setData();
         driver.close();

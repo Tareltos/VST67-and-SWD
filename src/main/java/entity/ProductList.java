@@ -1,4 +1,4 @@
-package Product;
+package entity;
 
 import java.io.IOException;
 import java.util.*;

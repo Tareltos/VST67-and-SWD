@@ -1,4 +1,4 @@
-package Product;
+package entity;
 
 /**
  * Created by Виталя Тарелко on 19.06.2017.

@@ -55,8 +55,31 @@ public class loadSet {
         Workbook book = new HSSFWorkbook();
         // Создаем лист
         Sheet sheet = book.createSheet("AUTOSPACE");
+        Row title = sheet.createRow(0);
+        Cell brand1 = title.createCell(0);
+        brand1.setCellValue("Brand");
+        Cell group1 = title.createCell(1);
+        group1.setCellValue("Group");
+        Cell art1 = title.createCell(2);
+        art1.setCellValue("Art");
+        Cell code1 = title.createCell(3);
+        code1.setCellValue("1C_CODE");
+        Cell e1 = title.createCell(4);
+        e1.setCellValue("ED");
+        Cell count1 = title.createCell(5);
+        count1.setCellValue("Count_AC");
+        Cell sbs1 = title.createCell(6);
+        sbs1.setCellValue("SBS");
+        Cell cost1 = title.createCell(7);
+        cost1.setCellValue("RU_001");
+        Cell rus1 = title.createCell(8);
+        rus1.setCellValue("Best_Price_VST67");
+        Cell deliveryTime1 = title.createCell(9);
+        deliveryTime1.setCellValue("Delivery_time");
+        Cell rusCount1 = title.createCell(10);
+        rusCount1.setCellValue("Count_From_VST67");
         // Нумерация начинается с нуля
-        for (int i = 0; i < list.size(); i++) {
+        for (int i = 1; i < list.size(); i++) {
             Row row = sheet.createRow(i);
             // Создаем ячейку
             Cell brand = row.createCell(0);
@@ -80,7 +103,7 @@ public class loadSet {
             Cell deliveryTime = row.createCell(9);
             deliveryTime.setCellValue(list.get(i).getTime());
             Cell rusCount = row.createCell(10);
-            rus.setCellValue(list.get(i).getrCount());
+            rusCount.setCellValue(list.get(i).getrCount());
 
             // Меняем размер столбца
             sheet.autoSizeColumn(1);
